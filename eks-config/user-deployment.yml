@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user
+  labels:
+    app: user
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: user
+  template:
+    metadata:
+      labels:
+        app: user
+    spec:
+      containers:
+      - name: user
+        image: joandetchenou/udagram-api-user:v1
+        ports:
+          - containerPort: 8080
+        envFrom:
+          - configMapRef:
+              name: env-configmap
+          - secretRef:
+              name: env-pg-secrets
+        volumeMounts:
+          - mountPath: "/root/.aws/"
+            name: aws-credentials
+      volumes:
+        - name: aws-credentials
+          configMap:
+            name: aws-credentials

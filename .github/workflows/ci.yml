@@ -25,4 +25,4 @@ jobs:
     - run: docker push joandetchenou/reverseproxy:v1
     - run: docker push joandetchenou/udagram-api-user:v1
     - run: docker push joandetchenou/udagram-api-feed:v1
-    - run: docker push joandetchenou/udagram-frontend:v1
+    - run: docker push joandetchenou/udagram-frontend:v2
